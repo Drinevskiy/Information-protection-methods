@@ -112,16 +112,15 @@ def encrypt_file_cfb(input_path, output_path, key, iv):
                 if not plaintext_block:
                     break # Конец файла
 
-                # 1. Шифруем предыдущий блок шифротекста (или IV) для получения гаммы
                 gamma = cipher._encrypt_block(gamma_input)
                 
-                # 2. XOR гаммы с блоком открытого текста
+                # XOR гаммы с блоком открытого текста
                 # Если последний блок неполный, XORим только его часть
                 ciphertext_block = xor_bytes(plaintext_block, gamma[:len(plaintext_block)])
                 
                 f_out.write(ciphertext_block)
                 
-                # 3. Текущий блок шифротекста становится входом для следующего шага
+                # Текущий блок шифротекста становится входом для следующего шага
                 gamma_input = ciphertext_block
         
         print(f"Файл '{input_path}' успешно зашифрован в '{output_path}'.")
@@ -193,7 +192,7 @@ if __name__ == '__main__':
         "Это тестовое сообщение для демонстрации ручной реализации шифрования.\n"
         "Алгоритм: ГОСТ 28147-89\n"
         "Режим: Гаммирование с обратной связью (CFB)\n"
-        "Эта строка делает файл некратным 8 байтам."
+        "Эта строка делает файл некратным 8 байтам.!@#$%^&^%$#@#$%^&*&^%$#"
     )
     with open(original_filename, 'w', encoding='utf-8') as f:
         f.write(test_content)
