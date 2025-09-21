@@ -44,7 +44,7 @@ class Belt:
     def encrypt_block(self, block: bytes) -> bytes:
         if len(block) != 16:
             raise ValueError("Размер блока для шифрования должен быть 16 байт.")
-        a, b, c, d = [int.from_bytes(block[i:i+4],  ) for i in range(0, 16, 4)]
+        a, b, c, d = [int.from_bytes(block[i:i+4]) for i in range(0, 16, 4)]
         for i in range(1, 9):
             b = b ^ self._g_func(5, add32(a, self.round_keys[7*i - 7]))
             c = c ^ self._g_func(21, add32(d, self.round_keys[7*i - 6]))
