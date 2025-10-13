@@ -81,8 +81,8 @@ def decrypt(ciphertexts, p, q):
         valid_decodings = []
         for r in candidates:
             try:
-                byte_length = (r.bit_length() + 7) // 8
-                decoded = r.to_bytes(byte_length).decode('utf-8')
+                length = (r.bit_length() + 7) // 8
+                decoded = r.to_bytes(length).decode('utf-8')
                 valid_decodings.append(decoded)
             except UnicodeDecodeError:
                 pass
